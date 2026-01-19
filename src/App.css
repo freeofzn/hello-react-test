@@ -2,25 +2,23 @@
 :root {
   --font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
-  /* 라이트 모드 변수 */
-  --bg-color-light: #f0f2f5;
-  --bg-gradient-light: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
-  --card-bg-light: rgba(255, 255, 255, 0.5);
-  --text-color-light: #333;
-  --text-secondary-light: #888;
-  --accent-color-light: #8e2de2;
-  --accent-gradient-light: linear-gradient(to right, #8e2de2, #4a00e0);
-  --border-color-light: rgba(255, 255, 255, 0.8);
-  --shadow-light: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  /* 라이트 모드 변수 (편안한 녹색/청록색 계열) */
+  --bg-gradient-light: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  --card-bg-light: rgba(255, 255, 255, 0.6);
+  --text-color-light: #263238;
+  --text-secondary-light: #78909c;
+  --accent-color-light: #009688; /* Teal */
+  --accent-gradient-light: linear-gradient(to right, #00bfa5, #009688);
+  --border-color-light: rgba(255, 255, 255, 0.9);
+  --shadow-light: 0 8px 32px 0 rgba(100, 100, 100, 0.1);
 
-  /* 다크 모드 변수 */
-  --bg-color-dark: #1a1a1a;
-  --bg-gradient-dark: linear-gradient(120deg, #2c3e50 0%, #4ca1af 100%);
-  --card-bg-dark: rgba(30, 30, 30, 0.6);
-  --text-color-dark: #f0f0f0;
-  --text-secondary-dark: #aaa;
-  --accent-color-dark: #bb86fc;
-  --accent-gradient-dark: linear-gradient(to right, #bb86fc, #3700b3);
+  /* 다크 모드 변수 (차분한 남색/청록색 계열) */
+  --bg-gradient-dark: linear-gradient(120deg, #0f2027 0%, #203a43 100%);
+  --card-bg-dark: rgba(30, 30, 30, 0.65);
+  --text-color-dark: #eceff1;
+  --text-secondary-dark: #90a4ae;
+  --accent-color-dark: #26a69a; /* Light Teal */
+  --accent-gradient-dark: linear-gradient(to right, #26a69a, #80cbc4);
   --border-color-dark: rgba(255, 255, 255, 0.1);
   --shadow-dark: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
@@ -57,8 +55,8 @@ body.dark-theme {
   max-width: 550px;
   padding: 30px;
   border-radius: 20px;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid;
   box-shadow: var(--shadow-light);
   transition: all 0.3s ease;
@@ -94,12 +92,8 @@ body.dark-theme {
   color: transparent;
 }
 
-.light-theme .app-header h1 {
-  background-image: var(--accent-gradient-light);
-}
-.dark-theme .app-header h1 {
-  background-image: var(--accent-gradient-dark);
-}
+.light-theme .app-header h1 { background-image: var(--accent-gradient-light); }
+.dark-theme .app-header h1 { background-image: var(--accent-gradient-dark); }
 
 .theme-toggle-btn {
   background: none;
@@ -109,10 +103,7 @@ body.dark-theme {
   padding: 5px;
   transition: transform 0.2s ease;
 }
-
-.theme-toggle-btn:hover {
-  transform: scale(1.2);
-}
+.theme-toggle-btn:hover { transform: scale(1.2); }
 
 /* --- 입력 폼 --- */
 .todo-form {
@@ -135,29 +126,18 @@ body.dark-theme {
 
 .light-theme .todo-input {
   color: var(--text-color-light);
-  border-color: rgba(0,0,0,0.1);
+  border-color: #cfd8dc;
 }
 
 .dark-theme .todo-input {
   color: var(--text-color-dark);
-  border-color: rgba(255,255,255,0.2);
+  border-color: #455a64;
 }
 
-.todo-input::placeholder {
-  color: var(--text-secondary-light);
-}
-
-.dark-theme .todo-input::placeholder {
-  color: var(--text-secondary-dark);
-}
-
-.todo-input:focus {
-  box-shadow: 0 0 0 2px var(--accent-color-light);
-}
-
-.dark-theme .todo-input:focus {
-  box-shadow: 0 0 0 2px var(--accent-color-dark);
-}
+.todo-input::placeholder { color: var(--text-secondary-light); }
+.dark-theme .todo-input::placeholder { color: var(--text-secondary-dark); }
+.todo-input:focus { box-shadow: 0 0 0 2px var(--accent-color-light); }
+.dark-theme .todo-input:focus { box-shadow: 0 0 0 2px var(--accent-color-dark); }
 
 .add-btn {
   padding: 15px 25px;
@@ -170,14 +150,8 @@ body.dark-theme {
   transition: all 0.3s ease;
 }
 
-.light-theme .add-btn {
-  background-image: var(--accent-gradient-light);
-}
-
-.dark-theme .add-btn {
-  background-image: var(--accent-gradient-dark);
-}
-
+.light-theme .add-btn { background-image: var(--accent-gradient-light); }
+.dark-theme .add-btn { background-image: var(--accent-gradient-dark); }
 .add-btn:hover {
   opacity: 0.9;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -190,26 +164,21 @@ body.dark-theme {
   margin: 0;
   max-height: 40vh;
   overflow-y: auto;
-  padding-right: 10px; /* 스크롤바 공간 */
+  padding-right: 10px;
 }
 
 .todo-item {
   display: flex;
   align-items: center;
-  padding: 15px;
-  margin-bottom: 10px;
+  padding: 12px 15px;
+  margin-bottom: 8px; /* 아이템 간격 줄임 */
   border-radius: 10px;
   transition: background-color 0.2s ease;
   word-break: break-word;
 }
 
-.light-theme .todo-item:hover {
-  background-color: rgba(0,0,0,0.05);
-}
-
-.dark-theme .todo-item:hover {
-  background-color: rgba(255,255,255,0.05);
-}
+.light-theme .todo-item:hover { background-color: rgba(0,0,0,0.04); }
+.dark-theme .todo-item:hover { background-color: rgba(255,255,255,0.04); }
 
 .todo-text {
   flex-grow: 1;
@@ -234,14 +203,8 @@ body.dark-theme {
 
 .light-theme .delete-btn { color: #f44336; }
 .dark-theme .delete-btn { color: #ff8a80; }
-
-.todo-item:hover .delete-btn {
-  opacity: 1;
-}
-
-.delete-btn:hover {
-  transform: scale(1.2);
-}
+.todo-item:hover .delete-btn { opacity: 1; }
+.delete-btn:hover { transform: scale(1.2); }
 
 /* --- 커스텀 체크박스 --- */
 .checkbox-container {
@@ -250,9 +213,7 @@ body.dark-theme {
   cursor: pointer;
 }
 
-.todo-checkbox {
-  display: none; /* 실제 체크박스 숨기기 */
-}
+.todo-checkbox { display: none; }
 
 .custom-checkbox {
   width: 22px;
@@ -267,13 +228,10 @@ body.dark-theme {
 
 .light-theme .custom-checkbox { border-color: var(--accent-color-light); }
 .dark-theme .custom-checkbox { border-color: var(--accent-color-dark); }
-
-
 .todo-item.completed .custom-checkbox {
   background-image: var(--accent-gradient-light);
   border-color: transparent;
 }
-
 .dark-theme .todo-item.completed .custom-checkbox {
   background-image: var(--accent-gradient-dark);
 }
@@ -287,75 +245,59 @@ body.dark-theme {
   transform: scale(0);
   transition: all 0.2s ease-in-out;
 }
-
 .todo-item.completed .custom-checkbox::after {
   opacity: 1;
   transform: scale(1);
 }
 
 /* --- 스크롤바 스타일 --- */
-.todo-list::-webkit-scrollbar {
-  width: 6px;
-}
-.todo-list::-webkit-scrollbar-track {
-  background: transparent;
-}
-.todo-list::-webkit-scrollbar-thumb {
-  border-radius: 3px;
-}
+.todo-list::-webkit-scrollbar { width: 6px; }
+.todo-list::-webkit-scrollbar-track { background: transparent; }
+.todo-list::-webkit-scrollbar-thumb { border-radius: 3px; }
 .light-theme .todo-list::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
 .dark-theme .todo-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); }
 
 
-/* --- 반응형 디자인 --- */
+/* --- 반응형 디자인 (모바일 우선) --- */
 @media (max-width: 600px) {
   body {
-    -webkit-tap-highlight-color: transparent; /* iOS 탭 하이라이트 제거 */
+    -webkit-tap-highlight-color: transparent;
   }
 
   .app-container {
-    padding: 20px 10px;
+    padding: 0; /* 모바일에서는 컨테이너 여백 제거 */
+    align-items: stretch;
   }
   
   .todo-app {
-    padding: 20px;
-    width: auto; /* 너비를 자동으로 조정 */
-  }
-
-  .app-header h1 {
-    font-size: 2.2rem;
-  }
-
-  .theme-toggle-btn {
-    font-size: 1.6rem;
-  }
-
-  .todo-form {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    padding: 30px 20px;
+    border-radius: 0; /* 모서리 둥글게 하지 않음 */
+    border-left: none;
+    border-right: none;
+    box-sizing: border-box;
+    display: flex;
     flex-direction: column;
   }
 
-  .todo-input, .add-btn {
-    padding: 14px;
-    font-size: 1rem;
+  .app-header {
+    flex-shrink: 0;
   }
-  
-  .todo-item {
-    padding: 12px 10px; /* 터치 영역 확보를 위해 패딩 조정 */
+  .todo-form {
+    flex-shrink: 0;
+    flex-direction: column;
   }
 
   .todo-list {
-    max-height: 60vh; /* 목록 높이를 늘려 더 많은 아이템 표시 */
+    flex-grow: 1; /* 남는 공간을 모두 차지 */
+    max-height: none; /* 높이 제한 해제 */
+    padding-right: 5px;
   }
-}
 
-@media (max-width: 380px) {
-  .app-header h1 {
-    font-size: 2rem;
-  }
-  .todo-app {
-    padding: 15px;
-  }
-  .todo-input, .add-btn {
-    padding: 12px;
+  .todo-item {
+    padding: 14px 10px;
+    margin-bottom: 5px; /* 모바일에서 간격 더 줄임 */
   }
 }
