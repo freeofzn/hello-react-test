@@ -1,42 +1,330 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* --- 기본 & 테마 설정 --- */
+:root {
+  --font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* 라이트 모드 변수 */
+  --bg-color-light: #f0f2f5;
+  --bg-gradient-light: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  --card-bg-light: rgba(255, 255, 255, 0.5);
+  --text-color-light: #333;
+  --text-secondary-light: #888;
+  --accent-color-light: #8e2de2;
+  --accent-gradient-light: linear-gradient(to right, #8e2de2, #4a00e0);
+  --border-color-light: rgba(255, 255, 255, 0.8);
+  --shadow-light: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+
+  /* 다크 모드 변수 */
+  --bg-color-dark: #1a1a1a;
+  --bg-gradient-dark: linear-gradient(120deg, #2c3e50 0%, #4ca1af 100%);
+  --card-bg-dark: rgba(30, 30, 30, 0.6);
+  --text-color-dark: #f0f0f0;
+  --text-secondary-dark: #aaa;
+  --accent-color-dark: #bb86fc;
+  --accent-gradient-dark: linear-gradient(to right, #bb86fc, #3700b3);
+  --border-color-dark: rgba(255, 255, 255, 0.1);
+  --shadow-dark: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body {
+  font-family: var(--font-family);
+  margin: 0;
+  transition: background-color 0.3s ease;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+body.light-theme {
+  background: var(--bg-gradient-light);
+  color: var(--text-color-light);
+}
+
+body.dark-theme {
+  background: var(--bg-gradient-dark);
+  color: var(--text-color-dark);
+}
+
+/* --- 메인 앱 컨테이너 --- */
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 50px 20px;
+  box-sizing: border-box;
+}
+
+/* --- Glassmorphism 카드 --- */
+.todo-app {
+  width: 100%;
+  max-width: 550px;
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid;
+  box-shadow: var(--shadow-light);
+  transition: all 0.3s ease;
+}
+
+.light-theme .todo-app {
+  background: var(--card-bg-light);
+  border-color: var(--border-color-light);
+  box-shadow: var(--shadow-light);
+}
+
+.dark-theme .todo-app {
+  background: var(--card-bg-dark);
+  border-color: var(--border-color-dark);
+  box-shadow: var(--shadow-dark);
+}
+
+
+/* --- 헤더 --- */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.light-theme .app-header h1 {
+  background-image: var(--accent-gradient-light);
+}
+.dark-theme .app-header h1 {
+  background-image: var(--accent-gradient-dark);
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 5px;
+  transition: transform 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.2);
+}
+
+/* --- 입력 폼 --- */
+.todo-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.todo-input {
+  flex-grow: 1;
+  padding: 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background-color: transparent;
+  border: 1px solid;
+  transition: all 0.3s ease;
+}
+
+.light-theme .todo-input {
+  color: var(--text-color-light);
+  border-color: rgba(0,0,0,0.1);
+}
+
+.dark-theme .todo-input {
+  color: var(--text-color-dark);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.todo-input::placeholder {
+  color: var(--text-secondary-light);
+}
+
+.dark-theme .todo-input::placeholder {
+  color: var(--text-secondary-dark);
+}
+
+.todo-input:focus {
+  box-shadow: 0 0 0 2px var(--accent-color-light);
+}
+
+.dark-theme .todo-input:focus {
+  box-shadow: 0 0 0 2px var(--accent-color-dark);
+}
+
+.add-btn {
+  padding: 15px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.light-theme .add-btn {
+  background-image: var(--accent-gradient-light);
+}
+
+.dark-theme .add-btn {
+  background-image: var(--accent-gradient-dark);
+}
+
+.add-btn:hover {
+  opacity: 0.9;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* --- 할 일 목록 --- */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 40vh;
+  overflow-y: auto;
+  padding-right: 10px; /* 스크롤바 공간 */
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+  word-break: break-word;
+}
+
+.light-theme .todo-item:hover {
+  background-color: rgba(0,0,0,0.05);
+}
+
+.dark-theme .todo-item:hover {
+  background-color: rgba(255,255,255,0.05);
+}
+
+.todo-text {
+  flex-grow: 1;
+  margin: 0 15px;
+  transition: all 0.3s ease;
+}
+
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.2s ease;
+}
+
+.light-theme .delete-btn { color: #f44336; }
+.dark-theme .delete-btn { color: #ff8a80; }
+
+.todo-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
+}
+
+/* --- 커스텀 체크박스 --- */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.todo-checkbox {
+  display: none; /* 실제 체크박스 숨기기 */
+}
+
+.custom-checkbox {
+  width: 22px;
+  height: 22px;
+  border: 2px solid;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.light-theme .custom-checkbox { border-color: var(--accent-color-light); }
+.dark-theme .custom-checkbox { border-color: var(--accent-color-dark); }
+
+
+.todo-item.completed .custom-checkbox {
+  background-image: var(--accent-gradient-light);
+  border-color: transparent;
+}
+
+.dark-theme .todo-item.completed .custom-checkbox {
+  background-image: var(--accent-gradient-dark);
+}
+
+.custom-checkbox::after {
+  content: '✓';
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.2s ease-in-out;
+}
+
+.todo-item.completed .custom-checkbox::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- 스크롤바 스타일 --- */
+.todo-list::-webkit-scrollbar {
+  width: 6px;
+}
+.todo-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.todo-list::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+}
+.light-theme .todo-list::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
+.dark-theme .todo-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); }
+
+
+/* --- 반응형 디자인 --- */
+@media (max-width: 600px) {
+  .app-container {
+    padding: 20px 10px;
   }
-  to {
-    transform: rotate(360deg);
+  .todo-app {
+    padding: 20px;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .app-header h1 {
+    font-size: 2rem;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  .theme-toggle-btn {
+    font-size: 1.5rem;
+  }
+  .todo-form {
+    flex-direction: column;
+  }
+  .todo-list {
+    max-height: 55vh;
+  }
 }
